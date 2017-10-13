@@ -40,7 +40,7 @@
                 {
                     instance: 'https://login.microsoftonline.com/',
                     tenant: 'jayasawgmail.onmicrosoft.com',
-                    clientId: 'f49e3625-9f1f-412d-b912-ed590c3aa325',
+                    clientId: 'b6b6a528-9fa2-49ae-bd7c-72ec88b8c6d1',
                     endpoints: { 'https://graph.windows.net/': 'https://graph.windows.net/' },
                     //loginResource: 'https://graph.windows.net/',
                     extraQueryParameter: 'nux=1?',
