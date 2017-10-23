@@ -1,0 +1,16 @@
+<div class='container'>
+
+    <!-- <div class="row">
+        <button ng-click="grid.showTable =  !grid.showTable" class="btn btn-primary">Show Table</button>
+    </div> -->
+    <div class='row'>
+        <div class='col-md-12'>
+
+            <span ng-if="grid.isError">{{grid.isError}}</span>
+            <ux-grid ng-if="!grid.isError" grid-columns='grid.columnData' filter-con="grid.search" grid-rows='grid.rowData'>
+            </ux-grid>
+        </div>
+
+
+    </div>
+</div>

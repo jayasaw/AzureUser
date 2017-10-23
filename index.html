@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="/">
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet"></link>
+    <link href="style.css" rel="stylesheet"></link>
+</head>
+
+<body>
+
+    <ux-header></ux-header>
+    <div class='container'>
+        <!-- <div ng-if="userInfo.isAuthenticated">
+            <div class="row">
+                <h1>API Operations</h1>
+            </div>
+            <div class="row">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"><a href="#">Profile</a></li>
+                    <li role="presentation"><a href="" ng-click="azure.getUser()">Directory Users</a></li>
+                </ul>
+            </div>
+        </div> -->
+        <ui-view></ui-view>
+    </div>
+
+
+
+
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/ngDraggable/ngDraggable.js"></script>
+    <script src="./bower_components/jquery/dist/jquery.js"></script>
+    <script src="./bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="./bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+    <script src="./bower_components/adaljs/adal.js"></script>
+    <script src="./bower_components/adaljs/adal-angular.js"></script>
+
+
+    <script src="index.js"></script>
+    <script src="./app/directives/ux-grid/ux-grid.js"></script>
+    <script src="./app/directives/ux-header/ux-header.js"></script>
+
+
+    <script src="./app/services/configService.js"></script>
+    <script src="./app/services/dataService.js"></script>
+    <script src="./app/services/AzureADService.js"></script>
+
+    <script src="./app/controllers/grid/gridCtrl.js"></script>
+    <script src="./app/controllers/home/homeCtrl.js"></script>
+    <script src="./app/controllers/azure/azureCtrl.js"></script>
+    <script src="./app/controllers/profile/profileCtrl.js"></script>
+    <script src="./app/controllers/groups/groupsCtrl.js"></script>
+
+    <script src="./app/filters/paginationFilter.js"></script>
+
+
+
+
+
+
+</body>
+
+</html>

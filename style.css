@@ -1,0 +1,7 @@
+tr:hover div.dropup {
+    display: inline;
+}
+
+div.dropup {
+    display:none;
+}
