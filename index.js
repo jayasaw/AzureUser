@@ -20,6 +20,12 @@
                     controllerAs: 'grid',
                     templateUrl: './app/controllers/grid/grid.html'
                 })
+                .state('azure.groups', {
+                    url: '/groups',
+                    controller: 'groupsCtrl',
+                    controllerAs: 'groups',
+                    templateUrl: './app/controllers/groups/groups.html'
+                })
                 .state('azure.profile', {
                     url: '/profile',
                     controller: 'profileCtrl',
@@ -39,13 +45,15 @@
             adalAuthenticationServiceProvider.init(
                 {
                     instance: 'https://login.microsoftonline.com/',
-                    tenant: 'jayasawgmail.onmicrosoft.com',
-                    clientId: 'b6b6a528-9fa2-49ae-bd7c-72ec88b8c6d1',
+                    tenant: 'vilasnikoseharbingergroup.onmicrosoft.com',
+                  //  clientId: '829dcad5-c72d-45e8-80a3-3b580d2ac8d7', // for JayaLocalApp
+                    clientId: '04048290-54e7-4d3f-8eb7-8f87daaa1989', //for JayaAzureUserApp
                     endpoints: { 'https://graph.windows.net/': 'https://graph.windows.net/' },
                     //loginResource: 'https://graph.windows.net/',
                     extraQueryParameter: 'nux=1?',
                     popUp: true,
                     requireADLogin: true,
+                    cacheLocation: 'localStorage'
                     //cacheLocation: 'localStorage', // enable this for IE, as sessionStorage does not work for localhost.
                 },
                 $httpProvider

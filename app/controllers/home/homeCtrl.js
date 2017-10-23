@@ -25,5 +25,14 @@
             vm.getToken = function () {
                 azureAD.getToken();
             }
+
+
+            function activate() {
+                if (sessionStorage.getItem('adal.idtoken')) {
+                    $state.go('azure');
+                 }
+            }
+
+            activate();
         })
 })();
