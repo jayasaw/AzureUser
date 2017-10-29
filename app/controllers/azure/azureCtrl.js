@@ -32,6 +32,10 @@
                 return userGroups.includes('Admin');
             }
 
+            vm.hasGroupViewAccess = function() {
+                return userGroups.includes('HasGroupViewAccess');
+            }
+
             activate();
         })
 })();

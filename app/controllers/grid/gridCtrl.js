@@ -6,17 +6,23 @@
             this.cuttext = false;
             this.pastetext = false;
             this.copytext = false;
-
+            var gridColumns;
             var gridConfig = [];
-            vm.isError= null;
+            vm.isError = null;
+            var userGroups = [];
 
-            var gridColumns = [
-                { columnName: 'objectType', displayName: 'User Role' },
-                { columnName: 'givenName', displayName: 'First Name', link: true },
-                { columnName: 'surname', displayName: 'Last Name' },
-                { columnName: 'userPrincipalName', displayName: 'Email' },
-                { columnName: 'userType', displayName: 'User Type' }
-            ];
+            function assignGridColumns() {
+                gridColumns = [
+                    { columnName: 'objectType', displayName: 'User Role', },
+                    { columnName: 'givenName', displayName: 'First Name', isFilter: !userGroups.includes('CanEditUsers') },
+                    { columnName: 'surname', displayName: 'Last Name' },
+                    { columnName: 'userPrincipalName', displayName: 'Email' },
+                    { columnName: 'userType', displayName: 'User Type' },
+
+                ];
+            }
+
+
 
 
 
@@ -25,7 +31,7 @@
                 azureAD.getUsers().then(function (res) {
                     vm.columnData = gridColumns;
                     vm.rowData = res.data.value;
-                    vm.isError =  null;
+                    vm.isError = null;
                     console.log(res);
                 }).catch(function (res) {
                     console.log(res);
@@ -46,7 +52,13 @@
 
             function activate() {
                 // fetchGridData();
-                fetchUsersData();
+                azureAD.getUserGroups()
+                    .then(function (res) {
+                        userGroups = res;
+                        assignGridColumns();
+                        fetchUsersData();
+                    })
+
             }
 
             // Initializing controller;
