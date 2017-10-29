@@ -11,7 +11,13 @@
 
             $rootScope.$on('adal:loginSuccess', function (data) {
                 console.log(data);
-                $state.go('azure');
+                azureAD.getUserAssignedGroups()
+                    .then(function () {
+                        $state.go('azure');
+                    }).catch(function (err) {
+                        console.log(err);
+                    });
+
             })
             vm.logout = function () {
                 adalAuthenticationService.logOut();
@@ -21,7 +27,7 @@
 
             return {
                 restrict: 'E',
-               // templateUrl: 'app/directives/ux-header/ux-header.html',
+                // templateUrl: 'app/directives/ux-header/ux-header.html',
                 template: `<nav class="navbar navbar-default">
                                 <div class="container-fluid">
                                     <div class="navbar-header">

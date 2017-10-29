@@ -36,18 +36,27 @@
                     url: '/azure',
                     controller: 'azureCtrl',
                     controllerAs: 'azure',
-                    templateUrl: './app/controllers/azure/azure.html'
+                    templateUrl: './app/controllers/azure/azure.html',
+                    resolve: {
+                        userGroups: function (azureAD) {
+                            return azureAD.getUserGroups().then(function (res) {
+                                return res;
+                            }).catch(function (err) {
+                                console.log(err);
+                            });
+                        }
+                    }
                 })
-                // extraQueryParameter: 'nux=1?grant_type=client_credentials&client_secret=Vv7u0UGgWIwWTFIqX7M1wABt%2FuqWc7eo%2FLp3Bh9pfhE%3D',
+            // extraQueryParameter: 'nux=1?grant_type=client_credentials&client_secret=Vv7u0UGgWIwWTFIqX7M1wABt%2FuqWc7eo%2FLp3Bh9pfhE%3D',
 
             $urlRouterProvider.otherwise("/home");
             $locationProvider.html5Mode(true);
             adalAuthenticationServiceProvider.init(
                 {
                     instance: 'https://login.microsoftonline.com/',
-                    tenant: 'vilasnikoseharbingergroup.onmicrosoft.com',
-                  //  clientId: '829dcad5-c72d-45e8-80a3-3b580d2ac8d7', // for JayaLocalApp
-                    clientId: '04048290-54e7-4d3f-8eb7-8f87daaa1989', //for JayaAzureUserApp
+                    tenant: 'iamanupsawgmail.onmicrosoft.com',
+                    //  clientId: '829dcad5-c72d-45e8-80a3-3b580d2ac8d7', // for JayaLocalApp
+                    clientId: '2ecdfb89-8dfc-4292-834b-a293e5f04c5e', //for JayaAzureUserApp
                     endpoints: { 'https://graph.windows.net/': 'https://graph.windows.net/' },
                     //loginResource: 'https://graph.windows.net/',
                     extraQueryParameter: 'nux=1?',

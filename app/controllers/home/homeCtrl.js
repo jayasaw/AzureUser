@@ -8,9 +8,9 @@
                 console.log(adalAuthenticationService.login());
             };
 
-            $rootScope.$on('adal:loginSuccess', function (data) {
-                console.log(data);
-            })
+            // $rootScope.$on('adal:loginSuccess', function (data) {
+            //     console.log(data);
+            // })
             vm.logout = function () {
                 adalAuthenticationService.logOut();
             };
