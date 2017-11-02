@@ -3,7 +3,7 @@
     angular.module('app')
         .factory('azureAD', function ($q, $http, adalAuthenticationService) {
             var azureAd = {};
-            var tenant = 'iamanupsawgmail.onmicrosoft.com';
+            var tenant = 'saurabhsablakaharbingergrou.onmicrosoft.com';
             var graphApi = 'https://graph.windows.net/'
             var userGroups = [];
             azureAd.getUsers = getUsers;
@@ -11,6 +11,10 @@
             azureAd.getGroups = getGroups;
             azureAd.getUserAssignedGroups = getUserAssignedGroups;
             azureAd.getUserGroups = getUserGroups;
+            azureAd.getMyGroups = getMyGroups;
+            azureAd.getUserManager = getUserManager;
+            azureAd.getDirectReportee = getDirectReportee;
+
             console.log(adalAuthenticationService);
 
             function getUsers() {
@@ -23,6 +27,25 @@
                     url: graphApi + tenant + '/users?api-version=1.6'
                 });
             }
+
+            function getGraphUsersByObjectId(token) {
+                return $http({
+                    method: 'GET',
+                    url: 'https://graph.windows.net/saurabhsablakaharbingergrou.onmicrosoft.com/directoryObjects/f6ab8ed1-22a1-41a9-b619-00ba96777fe2/Microsoft.DirectoryServices.User?api-version=1.6'
+                });
+            }
+
+            getGraphUsersByObjectId().then(
+                function (res) {
+
+                    console.log(res);
+                })
+                .catch(
+                function (res) {
+                    console.log(res);
+
+                });
+
 
             function getGroups() {
                 return $http({
@@ -75,6 +98,28 @@
                     data: { "securityEnabledOnly": false },
                     url: graphApi + tenant + '/me/getMemberGroups?api-version=1.6'
                 });
+            }
+
+            function getMyGroups() {
+                return getUserGroupsObjectId()
+                    .then(getUserGroupsObject)
+
+            }
+
+            function getDirectReportee(userId) {
+                return $http({
+                    method: 'GET',
+                    url: graphApi + tenant + '/users/' + userId + '/directReports?api-version=1.6'
+                });
+            }
+
+            function getUserManager(objectId) {
+
+                return $http({
+                    method: 'GET',
+                    url: graphApi + tenant + '/me/manager?api-version=1.6'
+                });
+
             }
 
             function getUserGroupsObject(res) {

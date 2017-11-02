@@ -11,6 +11,16 @@
             </tr>
         </table>
     </div>
+    <div class="row" style="margin-bottom:20px">
+        <button class="btn btn-primary" ng-click="profile.getMyDirectReprtee()">Get Direct Reportee</button>
+    </div>
+
+    <div class="row">
+        <span ng-if="profile.isError">{{profile.isError}}</span>
+        <span ng-if="profile.rowData.length === 0">No Direct reportee assigned</span>
+        <ux-grid ng-if="!profile.isError || profile.rowData.length !== 0" grid-columns='profile.columnData' grid-rows='profile.rowData'>
+        </ux-grid>
+    </div>
 
 
 </div>

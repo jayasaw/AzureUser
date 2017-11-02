@@ -4,14 +4,15 @@
     </div>
 
 
-    <div class="row" style="margin-bottom:50px;">
+    <!-- <div class="row" style="margin-bottom:50px;">
         <button class="btn btn-primary" ng-click="azure.openUserGroupPage()">User Groups </button>
-    </div>
+    </div> -->
     <div class="row">
         <ul class="nav nav-tabs">
             <li role="presentation" class="active"><a href="" ng-click="azure.getProfile()">Profile</a></li>
-            <li role="presentation" ng-if="azure.isUserAdmin()"><a href="" ng-click="azure.getUser()">Directory Users</a></li>
-            <li role="presentation" ng-if="azure.hasGroupViewAccess()"><a href="" ng-click="azure.getGroups()">User groups</a></li>
+            <li role="presentation" ng-if="azure.hasUserListViewAccess()"><a href="" ng-click="azure.getUser()">Directory Users</a></li>
+            <li role="presentation" ng-if="azure.hasGroupViewAccess()"><a href="" ng-click="azure.getGroups()">Directory Groups</a></li>
+            <li role="presentation" ><a href="" ng-click="azure.getMyGroups()">My Groups</a></li> 
         </ul>
     </div>
 

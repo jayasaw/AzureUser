@@ -26,6 +26,12 @@
                     controllerAs: 'groups',
                     templateUrl: './app/controllers/groups/groups.html'
                 })
+                .state('azure.myGroups', {
+                    url: '/myGroups',
+                    controller: 'myGroupsCtrl',
+                    controllerAs: 'myGroups',
+                    templateUrl: './app/controllers/myGroups/myGroups.html'
+                })
                 .state('azure.profile', {
                     url: '/profile',
                     controller: 'profileCtrl',
@@ -54,9 +60,9 @@
             adalAuthenticationServiceProvider.init(
                 {
                     instance: 'https://login.microsoftonline.com/',
-                    tenant: 'iamanupsawgmail.onmicrosoft.com',
+                    tenant: 'saurabhsablakaharbingergrou.onmicrosoft.com',
                     //  clientId: '829dcad5-c72d-45e8-80a3-3b580d2ac8d7', // for JayaLocalApp
-                    clientId: '2ecdfb89-8dfc-4292-834b-a293e5f04c5e', //for JayaAzureUserApp
+                    clientId: '2ada64a9-0b69-40a0-89ae-52075f82f0cc', //for EMS
                     endpoints: { 'https://graph.windows.net/': 'https://graph.windows.net/' },
                     //loginResource: 'https://graph.windows.net/',
                     extraQueryParameter: 'nux=1?',

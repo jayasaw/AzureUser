@@ -14,13 +14,17 @@
                 $state.go('azure.groups');
             }
 
-            vm.openUserGroupPage = function () {
-                $window.open('http://jayaazureusersgroups.azurewebsites.net');
-            }
+            // vm.openUserGroupPage = function () {
+            //     $window.open('http://jayaazureusersgroups.azurewebsites.net');
+            // }
 
 
             vm.getProfile = function () {
                 $state.go('azure.profile');
+            }
+
+            vm.getMyGroups = function() {
+                $state.go('azure.myGroups');
             }
 
 
@@ -33,7 +37,11 @@
             }
 
             vm.hasGroupViewAccess = function() {
-                return userGroups.includes('HasGroupViewAccess');
+                return (userGroups.includes('CanViewGroups') || userGroups.includes('Admin')) ? true : false;
+            }
+
+            vm.hasUserListViewAccess = function() {
+                return (userGroups.includes('CanViewUsers') || userGroups.includes('Admin')) ? true : false;
             }
 
             activate();
