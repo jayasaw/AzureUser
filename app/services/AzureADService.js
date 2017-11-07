@@ -66,6 +66,7 @@
                     .then(getUserGroupsObject)
                     .then(saveUserGroupList)
                     .catch(function (err) {
+                        console.error('Please check. you might not have any group access.');
                         console.log(err)
                     });
 

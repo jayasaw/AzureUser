@@ -6,7 +6,7 @@
     <div class='row'>
         <div class='col-md-12'>
 
-            <span ng-if="myGroups.isError">{{grid.isError}}</span>
+            <span ng-if="myGroups.isError">{{myGroups.isError}}</span>
             <ux-grid ng-if="!myGroups.isError" grid-columns='myGroups.columnData' filter-con="myGroups.search" grid-rows='myGroups.rowData'>
             </ux-grid>
         </div>

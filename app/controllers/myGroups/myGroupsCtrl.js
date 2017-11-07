@@ -26,9 +26,9 @@
                     console.log(res);
                 }).catch(function (res) {
                     console.log(res);
-                    vm.isError = res + ' please re login.';
-                    sessionStorage.clear();
-                    $rootScope.userInfo = null;
+                    vm.isError = 'You do not have any group assigned.';
+                   // sessionStorage.clear();
+                  //  $rootScope.userInfo = null;
                 })
 
             }

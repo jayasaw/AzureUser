@@ -23,7 +23,7 @@
                 $state.go('azure.profile');
             }
 
-            vm.getMyGroups = function() {
+            vm.getMyGroups = function () {
                 $state.go('azure.myGroups');
             }
 
@@ -32,16 +32,24 @@
                 vm.getProfile();
             }
 
+            
+
             vm.isUserAdmin = function () {
-                return userGroups.includes('Admin');
+                return userGroups
+                    ? userGroups.includes('Admin')
+                    : false;
             }
 
-            vm.hasGroupViewAccess = function() {
-                return (userGroups.includes('CanViewGroups') || userGroups.includes('Admin')) ? true : false;
+            vm.hasGroupViewAccess = function () {
+                return userGroups
+                    ? (userGroups.includes('CanViewGroups') || userGroups.includes('Admin')) ? true : false
+                    : false;
             }
 
-            vm.hasUserListViewAccess = function() {
-                return (userGroups.includes('CanViewUsers') || userGroups.includes('Admin')) ? true : false;
+            vm.hasUserListViewAccess = function () {
+                return userGroups
+                    ? (userGroups.includes('CanViewUsers') || userGroups.includes('Admin')) ? true : false
+                    : false;
             }
 
             activate();
