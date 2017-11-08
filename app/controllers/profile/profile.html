@@ -1,18 +1,31 @@
-<div>
+<div ng-if="profile.myProfile" >
     <div class="row">
         <table class="table table-striped">
             <tr>
                 <td>Name:</td>
-                <td>{{profile.user.name}}</td>
+                <td>{{profile.myProfile.displayName}}</td>
             </tr>
             <tr>
                 <td>Email Id:</td>
-                <td>{{profile.user.email}}</td>
+                <td>{{profile.myProfile.userPrincipalName}}</td>
+            </tr>
+            <tr>
+                <td>department:</td>
+                <td>{{profile.myProfile.department}}</td>
+            </tr>
+            <tr>
+                <td>JobTitle:</td>
+                <td>{{profile.myProfile.jobTitle}}</td>
+            </tr>
+            <tr>
+                <td>userType:</td>
+                <td>{{profile.myProfile.userType}}</td>
             </tr>
         </table>
     </div>
     <div class="row" style="margin-bottom:20px">
         <button class="btn btn-primary" ng-click="profile.getMyDirectReprtee()">Get Direct Reportee</button>
+        <button class="btn btn-primary" ng-click="profile.getUserProfile()">Get my details</button>
     </div>
 
     <div class="row">
@@ -23,4 +36,7 @@
     </div>
 
 
+</div>
+<div ng-if="!profile.myProfile">
+    <h3>Loading...</h3>
 </div>

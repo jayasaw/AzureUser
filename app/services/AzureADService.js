@@ -6,6 +6,7 @@
             var tenant = 'saurabhsablakaharbingergrou.onmicrosoft.com';
             var graphApi = 'https://graph.windows.net/'
             var userGroups = [];
+            var profileData = [];
             azureAd.getUsers = getUsers;
             azureAd.getToken = getToken;
             azureAd.getGroups = getGroups;
@@ -14,6 +15,7 @@
             azureAd.getMyGroups = getMyGroups;
             azureAd.getUserManager = getUserManager;
             azureAd.getDirectReportee = getDirectReportee;
+            azureAd.getUserProfile  = getUserProfile ;
 
             console.log(adalAuthenticationService);
 
@@ -91,6 +93,13 @@
                 }
                 return defer.promise;
 
+            }
+
+            function getUserProfile() {
+                return $http({
+                    method: 'GET',
+                    url: graphApi + tenant + '/me?api-version=1.6'
+                });
             }
 
             function getUserGroupsObjectId() {

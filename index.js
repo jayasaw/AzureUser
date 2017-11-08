@@ -36,7 +36,16 @@
                     url: '/profile',
                     controller: 'profileCtrl',
                     controllerAs: 'profile',
-                    templateUrl: './app/controllers/profile/profile.html'
+                    templateUrl: './app/controllers/profile/profile.html',
+                    resolve:{
+                        profileData : function(azureAD){
+                            return azureAD.getUserProfile().then(function(res){
+                                return res.data;
+                            }).catch(function(err){
+                                console.log(err);
+                            });
+                        }
+                    }
                 })
                 .state('azure', {
                     url: '/azure',
@@ -48,7 +57,8 @@
                             return azureAD.getUserGroups().then(function (res) {
                                 return res;
                             }).catch(function (err) {
-                                console.log(err);
+                                console.error('error while fetching user profile data.');
+                                return err;
                             });
                         }
                     }

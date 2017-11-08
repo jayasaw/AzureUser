@@ -1,11 +1,13 @@
 (function () {
     angular.module('app')
-        .controller('profileCtrl', function ($rootScope, azureAD) {
+        .controller('profileCtrl', function ($rootScope, azureAD, profileData) {
 
 
             var vm = this;
             vm.user = $rootScope.userInfo.profile
             vm.rowData = [];
+
+            vm.myProfile = profileData;
 
 
             var gridColumns = [
@@ -14,6 +16,7 @@
                 { columnName: 'surname', displayName: 'Last Name' },
                 { columnName: 'userPrincipalName', displayName: 'Email' },
                 { columnName: 'userType', displayName: 'User Type' },
+              
 
             ];
 
@@ -40,9 +43,9 @@
 
             }
 
-            vm.getMyDirectReprtee =  function(){
+            vm.getMyDirectReprtee = function () {
                 azureAD.getDirectReportee(vm.user.oid)
-                .then(
+                    .then(
                     function (res) {
                         vm.columnData = gridColumns;
                         vm.rowData = res.data.value;
@@ -60,9 +63,7 @@
             }
 
 
-
-            // // Get Grid Data
-            function getUserProfile() {
+            function getUserGroups() {
                 azureAD.getUserAssignedGroups().then(function (res) {
                     // vm.columnData = gridColumns;
                     // vm.rowData = res.data.value;
@@ -72,12 +73,32 @@
                     console.log(res);
                     vm.isError = res + ' please re login.';
                     sessionStorage.clear();
-                   // $rootScope.userInfo = null;
+                    // $rootScope.userInfo = null;
                 })
+            }
+
+            // // Get Grid Data
+            vm.getUserProfile = function () {
+                azureAD
+                    .getUserProfile()
+                    .then(function (res) {
+                        vm.myProfile = res.data;
+                        // vm.columnData = gridColumns;
+                        // vm.rowData = res.data.value;
+                        // vm.isError =  null;
+                        console.log(res);
+                    })
+                    .catch(function (res) {
+                        console.log(res);
+                        vm.isError = res + ' please re login.';
+                        sessionStorage.clear();
+                        // $rootScope.userInfo = null;
+                    })
+
 
             }
 
-      
+
 
 
             vm.delete = function (id) {
@@ -88,7 +109,9 @@
             function activate() {
                 // fetchGridData();
                 //getUserProfile();
-               // getManager();
+                // getManager();
+
+               // vm.getUserProfile();
             }
 
             // Initializing controller;
